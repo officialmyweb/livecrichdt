@@ -15,56 +15,65 @@
         </div>
     </center>
     <script>
-        const manifestUri = "https://linearjitp-playback.astro.com.my/dash-wv/linear/2504/default.mpd";
-        async function init() {
-            const video = document.getElementById('video');
-            const ui = video['ui'];
-            const controls = ui.getControls();
-            const player = controls.getPlayer();
-            window.player = player;
-            window.ui = ui;
-            const config = {
-                 enableKeyboardPlaybackControls: true,
-                'seekBarColors': {
-                 base: 'rgba(255,255,255,.2)',
-                 buffered: 'rgba(255,255,255,.4)',
-                 played: 'rgb(255,0,0)',
-              },
-            };
-            ui.configure(config);
-            player.configure({
-                drm: {
-                    "clearKeys": {
-                        '03c2e0af2f8159f9f0ce9b5dbc865f10': 'cd84ed136b0cc71f8ab8cd4d4f6a2e4c'
-                    }
-                }
-            });
-            player.addEventListener('error', onPlayerErrorEvent);
-            controls.addEventListener('error', onUIErrorEvent);
-            try {
-                await player.load(manifestUri);
-                console.log('The video has now been loaded!');
-            } catch (error) {
-                onPlayerError(error);
-        }}
+        if (confirm("Join Our Telegram Channel @#")) { 
+    window.location.href = "#"; 
+}
 
-        function onPlayerErrorEvent(errorEvent) {
-            onPlayerError(event.detail);
-        }
+const manifestUri = "https://linearjitp-playback.astro.com.my/dash-wv/linear/2504/default.mpd";
 
-        function onPlayerError(error) {
-            console.error('Error code', error.code, 'object', error);
-        }
+async function init() {
+    const video = document.getElementById('video');
+    const ui = video['ui'];
+    const controls = ui.getControls();
+    const player = controls.getPlayer();
+    window.player = player;
+    window.ui = ui;
 
-        function onUIErrorEvent(errorEvent) {
-            onPlayerError(event.detail);
-        }
+    // Add logo
+    const logoImg = document.createElement('img');
+    logoImg.src = '#'; 
+    logoImg.id = 'logo';
+    logoImg.addEventListener('click', function() {
+        window.open('#', '_blank'); 
+    });
+    video.appendChild(logoImg);
 
-        function initFailed(errorEvent) {
-            console.error('Unable to load the UI library!');
+    player.configure({
+        drm: {
+            "clearKeys": {
+                '03c2e0af2f8159f9f0ce9b5dbc865f10': 'cd84ed136b0cc71f8ab8cd4d4f6a2e4c'
+            }
         }
-        document.addEventListener('shaka-ui-loaded', init);
-        document.addEventListener('shaka-ui-load-failed', initFailed);
+    });
+    player.addEventListener('error', onPlayerErrorEvent);
+    controls.addEventListener('error', onUIErrorEvent);
+
+    try { 
+        await player.load(manifestUri); 
+        console.log('The video has now been loaded!'); 
+    } catch (error) { 
+        onPlayerError(error); 
+    }
+}
+
+function onPlayerErrorEvent(errorEvent) { 
+    onPlayerError(event.detail); 
+}
+
+function onPlayerError(error) { 
+    console.error('Error code', error.code, 'object', error); 
+}
+
+function onUIErrorEvent(errorEvent) { 
+    onPlayerError(event.detail); 
+}
+
+function initFailed(errorEvent) { 
+    console.error('Unable to load the UI library!'); 
+}
+
+document.addEventListener('shaka-ui-loaded', init);
+document.addEventListener('shaka-ui-load-failed', initFailed);
     </script>
 </body>
 
