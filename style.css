@@ -1,4 +1,4 @@
-  <style>
+
     body {
         width:100%;
         height: 100%;
@@ -34,4 +34,4 @@ body::before {
         background-size: 110px auto, auto;
         opacity: 0.4;
     }
-</style>
+
