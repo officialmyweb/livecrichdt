@@ -374,6 +374,9 @@ body.active { overflow: hidden; }
   padding-block: 25px;
   transition: var(--transition-2);
   z-index: 4;
+  background-image: url('https://i.ibb.co/bXf0z18/IMG-20240607-145917-587.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .header.active {
@@ -387,7 +390,9 @@ body.active { overflow: hidden; }
   align-items: center;
 }
 
-.header-actions { display: none; }
+.header-actions {
+  display: none;
+}
 
 .menu-open-btn {
   color: var(--white);
@@ -427,7 +432,9 @@ body.active { overflow: hidden; }
   padding: 5px;
 }
 
-.menu-close-btn ion-icon { --ionicon-stroke-width: 80px; }
+.menu-close-btn ion-icon {
+  --ionicon-stroke-width: 80px;
+}
 
 .navbar-list {
   border-top: 1px solid hsla(0, 0%, 100%, 0.1);
@@ -443,7 +450,9 @@ body.active { overflow: hidden; }
   transition: var(--transition-1);
 }
 
-.navbar-link:is(:hover, :focus) { color: var(--citrine); }
+.navbar-link:is(:hover, :focus) {
+  color: var(--citrine);
+}
 
 .navbar-social-list {
   display: flex;
@@ -458,7 +467,9 @@ body.active { overflow: hidden; }
   transition: var(--transition-1);
 }
 
-.navbar-social-link:is(:hover, :focus) { color: var(--citrine); }
+.navbar-social-link:is(:hover, :focus) {
+  color: var(--citrine);
+}
 
 .overlay {
   position: fixed;
