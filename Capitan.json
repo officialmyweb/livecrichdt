@@ -1,10 +1,10 @@
 {
   "Channel Name - Hindi": {
-    "file": "https://aba5sdmaaaaaaaamkycwliah6buj4.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/tgcrfjcgia/out/v1/7296f026409c4e9ba8844a238628f9ad/cenc.mpd",
+    "file": "https://bpprod5catchup.akamaized.net/bpk-tv/irdeto_com_Channel_252/output/manifest.mpd?begin=20240606T223212&end=20240614T223212",
     "drm": {
       "clearkey": {
-        "keyId": "d1badeadb11f16bbd0ad7d47914d939e",
-        "key": "bd52d185d3537c4c1759db6d66f90f31"
+        "keyId": "124dccb711dc563d80c6cf101718672c",
+        "key": "1988b9b5aa84e3275894e73a29757e92"
       }
     }
   }
