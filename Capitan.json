@@ -1,0 +1,11 @@
+{
+  "Channel Name - Hindi": {
+    "file": "https://aba5sdmaaaaaaaamkycwliah6buj4.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/tgcrfjcgia/out/v1/7296f026409c4e9ba8844a238628f9ad/cenc.mpd",
+    "drm": {
+      "clearkey": {
+        "keyId": "d1badeadb11f16bbd0ad7d47914d939e",
+        "key": "bd52d185d3537c4c1759db6d66f90f31"
+      }
+    }
+  }
+}
