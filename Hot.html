@@ -1,85 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta name="referrer" content="no-referrer" />
-    <title>A-1</title>
-    <script src="https://cdn.jsdelivr.net/gh/oziltv/dondoo@main/master/shaka-player.ui.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/oziltv/dondoo@main/master/shaka.css" crossorigin="anonymous" />
-    
-</script>
-
-</script>
-    </head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram-Live-Cric-Hd</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/controls.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="livecrichd.css">  
+</head>
 <body>
-    <center>
-              <div data-shaka-player-container style="max-width:100em"
-         data-shaka-player-cast-receiver-id="1BA79154">
-       <!-- The data-shaka-player tag will make the UI library use this video element.
-            If no video is provided, the UI will automatically make one inside the container div. -->
-        <video autoplay data-shaka-player id="video" poster="" style="width:100%;height:100%"></video>
-              </div>
-    </center>
+    <div data-shaka-player-container class="shaka-video-container" style='width: 100%; height: 100%'>
+        <video autoplay data-shaka-player id='video' style='width:100%;height:100%;' poster="https://i.ibb.co/j6Dv09s/IMG-20240601-162650.jpg"></video>
+    </div>
+
+    <!-- Script to fetch JSON data and set up DRM keys -->
     <script>
-const manifestUri =
-    'https://linearjitp-playback.astro.com.my/dash-wv/linear/2504/default.mpd';
-async function init() {
-  // When using the UI, the player is made automatically by the UI object.
-  const video = document.getElementById('video');
-  const ui = video['ui'];
-  const controls = ui.getControls();
-  const player = controls.getPlayer();
-  const config = {
-  'controlPanelElements': ['play_pause', 'time_and_duration', 'spacer', 'mute', 'picture_in_picture', 'playback_rate', 'quality', 'fullscreen'],
-  'playbackRates': [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
-}
-ui.configure(config);
-player.configure({
-  drm: {
-    clearKeys: {
-      // 'key-id-in-hex': 'key-in-hex',
-      '03c2e0af2f8159f9f0ce9b5dbc865f10': 'cd84ed136b0cc71f8ab8cd4d4f6a2e4c',
-    }
-  }
-});
-  // Attach player and ui to the window to make it easy to access in the JS console.
-  window.player = player;
-  window.ui = ui;
-  // Listen for error events.
-  player.addEventListener('error', onPlayerErrorEvent);
-  controls.addEventListener('error', onUIErrorEvent);
-  // Try to load a manifest.
-  // This is an asynchronous process.
-  try {
-    await player.load(manifestUri);
-    // This runs if the asynchronous load is successful.
-    console.log('The video has now been loaded!');
-  } catch (error) {
-    onPlayerError(error);
-  }
-}
-function onPlayerErrorEvent(errorEvent) {
-  // Extract the shaka.util.Error object from the event.
-  onPlayerError(event.detail);
-}
-function onPlayerError(error) {
-  // Handle player error
-  console.error('Error code', error.code, 'object', error);
-}
-function onUIErrorEvent(errorEvent) {
-  // Extract the shaka.util.Error object from the event.
-  onPlayerError(event.detail);
-}
-function initFailed(errorEvent) {
-  // Handle the failure to load; errorEvent.detail.reasonCode has a
-  // shaka.ui.FailReasonCode describing why.
-  console.error('Unable to load the UI library!');
-}
-// Listen to the custom shaka-ui-loaded event, to wait until the UI is loaded.
-document.addEventListener('shaka-ui-loaded', init);
-// Listen to the custom shaka-ui-load-failed event, in case Shaka Player fails
-// to load (e.g. due to lack of browser support).
-document.addEventListener('shaka-ui-load-failed', initFailed);
+        const jsonUrl = "/Capitan.json";
+
+        async function fetchData() {
+            try {
+                const response = await fetch(jsonUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data["Channel Name - Hindi"];
+            } catch (error) {
+                console.error("Failed to fetch JSON data:", error);
+                return null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const channelData = await fetchData();
+            if (channelData) {
+                const manifestUri = channelData.file;
+                const drmKeys = {
+                    "clearKeys": {
+                        [channelData.drm.clearkey.keyId]: channelData.drm.clearkey.key
+                    }
+                };
+                window.manifestUri = manifestUri;
+                window.drmKeys = drmKeys;
+                document.dispatchEvent(new CustomEvent('shaka-data-loaded'));
+            }
+        });
+    </script>
+
+    <!-- Script to initialize Shaka player -->
+    <script>
+        document.addEventListener('shaka-data-loaded', async function() {
+            const video = document.getElementById('video');
+            const ui = video['ui'];
+            const controls = ui.getControls();
+            const player = controls.getPlayer();
+            window.player = player;
+            window.ui = ui;
+
+            const config = {
+                enableKeyboardPlaybackControls: true,
+                'seekBarColors': {
+                    base: 'rgba(255,255,255,.2)',
+                    buffered: 'rgba(255,255,255,.4)',
+                    played: 'rgb(255,0,0)',
+                },
+                addSeekBar: true,
+                addBigPlayButton: true,
+                addSettingsMenu: true,
+                addCaptionsButton: true,
+            };
+            ui.configure(config);
+
+            player.configure({
+                drm: window.drmKeys
+            });
+
+            document.addEventListener('keydown', (e) => {
+                // Key handling code as before
+            });
+
+            player.addEventListener('error', onPlayerErrorEvent);
+            controls.addEventListener('error', onUIErrorEvent);
+
+            try {
+                await player.load(window.manifestUri);
+                console.log('The video has now been loaded!');
+            } catch (error) {
+                onPlayerError(error);
+            }
+        });
+
+        function onPlayerErrorEvent(errorEvent) {
+            onPlayerError(errorEvent.detail);
+        }
+
+        function onPlayerError(error) {
+            console.error('Error code', error.code, 'object', error);
+        }
+
+        function onUIErrorEvent(errorEvent) {
+            onPlayerError(errorEvent.detail);
+        }
+
+        function initFailed(errorEvent) {
+            console.error('Unable to load the UI library!');
+        }
+
+        document.addEventListener('shaka-ui-loaded', function() {
+            if (window.manifestUri && window.drmKeys) {
+                document.dispatchEvent(new CustomEvent('shaka-data-loaded'));
+            }
+        });
+        document.addEventListener('shaka-ui-load-failed', initFailed);
+
+        const addLogo = () => {
+            const logo = document.createElement('img');
+            logo.src = 'https://i.ibb.co/7VF2dfy/1000000077-removebg-preview.png';
+            logo.alt = 'Logo';
+            logo.className = 'logo';
+            logo.addEventListener('click', function() {
+                window.location.href = 'https://telegram.me/livecrichdofficial';
+            });
+
+            const videoContainer = document.querySelector('.shaka-video-container');
+            videoContainer.appendChild(logo);
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            addLogo();
+        });
     </script>
 </body>
-
 </html>
-
