@@ -1,42 +1,36 @@
 <?php
+// Define the URL
+$url = 'https://captaintvwc.x10.mx/tataplay/get.php?id=35';
 
-// URL of the JSON API
-$json_url = 'https://captaintvwc.x10.mx/tataplay/tatajson.php';
+// Fetch the JSON data
+$json_data = file_get_contents($url);
 
-// Fetch JSON data
-$json_data = file_get_contents($json_url);
-
-// Decode JSON data into associative array
-$data = json_decode($json_data, true);
-
-// Check if id parameter is set in the URL
-if (isset($_GET['id'])) {
-    $requested_id = $_GET['id'];
-    
-    // Search for the channel with the requested ID
-    $channel_found = false;
-    foreach ($data['data']['channels'] as $channel) {
-        if ($channel['id'] == $requested_id) {
-            // Display channel information
-            $channel_found = true;
-            echo '<h1>Channel Details</h1>';
-            echo '<p>ID: ' . $channel['id'] . '</p>';
-            echo '<p>Name: ' . $channel['name'] . '</p>';
-            echo '<p>Genres: ' . implode(', ', $channel['genres']) . '</p>';
-            echo '<p>Languages: ' . implode(', ', $channel['languages']) . '</p>';
-            echo '<p><img src="' . $channel['logo_url'] . '" alt="Channel Logo"></p>';
-            // Display more details as needed
-            break; // Exit loop once channel is found
-        }
-    }
-    
-    // If no channel is found with the requested ID
-    if (!$channel_found) {
-        echo '<p>No channel found with ID: ' . $requested_id . '</p>';
-    }
-} else {
-    // Handle case where no id parameter is provided
-    echo '<p>No ID parameter provided.</p>';
+// Check if data fetching was successful
+if ($json_data === false) {
+    die('Error fetching the data.');
 }
 
+// Decode the JSON data into a PHP associative array
+$data = json_decode($json_data, true);
+
+// Check if JSON decoding was successful
+if ($data === null) {
+    die('Error decoding JSON data.');
+}
+
+// Display the channel data
+echo '<h1>Channel Details</h1>';
+echo '<p>ID: ' . htmlspecialchars($data['channel_id']) . '</p>';
+echo '<p>Name: ' . htmlspecialchars($data['channel_name']) . '</p>';
+echo '<p>Manifest URL: <a href="' . htmlspecialchars($data['channel__url']) . '">' . htmlspecialchars($data['channel__url']) . '</a></p>';
+echo '<h2>Base64 Keys</h2>';
+
+foreach ($data['base64']['keys'] as $key) {
+    echo '<p>Key Type: ' . htmlspecialchars($key['kty']) . '</p>';
+    echo '<p>Key: ' . htmlspecialchars($key['k']) . '</p>';
+    echo '<p>Key ID: ' . htmlspecialchars($key['kid']) . '</p>';
+}
+
+echo '<p>Key ID: ' . htmlspecialchars($data['keyid']) . '</p>';
+echo '<p>Key: ' . htmlspecialchars($data['key']) . '</p>';
 ?>
