@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fetch Hex Media Segment</title>
+<title>Fetch Hex Media Segment for ID 35</title>
 </head>
 <body>
 <div id="mediaSegmentData">
@@ -11,23 +11,23 @@
 </div>
 
 <script>
-// Function to fetch and display hex media segment
+// Function to fetch and display hex media segment for ID 35
 async function fetchHexMediaSegment() {
     try {
         const response = await fetch('https://tplayapi.code-crafters.app/321codecrafters/fetcher.json');
         const data = await response.json();
 
-        // Find the entry with id '35'
-        const entry = data.find(item => item.id === '35');
+        // Find the entry with id "35" and source "media_segment"
+        const entry = data.find(item => item.id === '35' && item.source === 'media_segment');
 
         if (entry) {
-            // Assuming 'hex' is directly under 'clearkeys' array
-            const hexMediaSegment = entry.clearkeys[0].hex; // Adjust index based on actual structure
+            // Extract the hex value
+            const hexMediaSegment = entry.hex;
 
             // Display hex media segment data
-            document.getElementById('mediaSegmentData').textContent = `Hex Media Segment: ${hexMediaSegment}`;
+            document.getElementById('mediaSegmentData').textContent = `Hex Media Segment (ID 35): ${hexMediaSegment}`;
         } else {
-            document.getElementById('mediaSegmentData').textContent = 'Hex Media Segment not found.';
+            document.getElementById('mediaSegmentData').textContent = 'Hex Media Segment not found for ID 35.';
         }
     } catch (error) {
         console.error('Error fetching data:', error);
