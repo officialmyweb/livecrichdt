@@ -1,28 +1,28 @@
 {
   "Channel Name - Hindi": {
-    "file": "https://bpprod3catchup.akamaized.net/bpk-tv/irdeto_com_Channel_252/output/manifest.mpd?begin=20240610T221804&end=20240618T221804",
+    "file": "https://bpprod3catchup.akamaized.net/bpk-tv/irdeto_com_Channel_252/output/manifest.mpd?begin=20240611T212212&end=20240619T212212",
     "drm": {
       "clearkey": {
-        "keyId": "dfe9a79a244752258090c296d1dd7717",
-        "key": "71908bce56630c8f43a06eb1998ff1b7"
+        "keyId": "c5ff21f83ddf546b9d1a8779e338ad62",
+        "key": "ef7598a917976cbdf35da1a1506c5e05"
       }
     }
   },
   "Channel Name - English": {
-    "file": "https://bpprod2catchup.akamaized.net/bpk-tv/irdeto_com_Channel_250/output/manifest.mpd?begin=20240610T221850&end=20240618T221850",
+    "file": "https://bpprod2catchup.akamaized.net/bpk-tv/irdeto_com_Channel_250/output/manifest.mpd?begin=20240611T212251&end=20240619T212251",
     "drm": {
       "clearkey": {
-        "keyId": "ac027aa139a1524f896b88ad6ccc8933",
-        "key": "0a8579d614d79a2e47fb8006a19bb491"
+        "keyId": "26a94a95d9b45ef2b94b764cf19e1bcf",
+        "key": "1e5020ee50b9f547ec3e0e84a9fd58b8"
       }
     }
   },
   "Channel Name - English2": {
-    "file": "https://bpprod5catchup.akamaized.net/bpk-tv/irdeto_com_Channel_251/output/manifest.mpd?begin=20240610T221922&end=20240618T221922",
+    "file": "https://bpprod5catchup.akamaized.net/bpk-tv/irdeto_com_Channel_251/output/manifest.mpd?begin=20240611T212319&end=20240619T212319",
     "drm": {
       "clearkey": {
-        "keyId": "e9c633ae7e4053d690083fd588e216fb",
-        "key": "178429edccb81c6dba3b1be784615152"
+        "keyId": "312a34f18d60585ebc30ef0c23db64dd",
+        "key": "71325fcfce769f213a7b3e363025527f"
       }
     }
   }
