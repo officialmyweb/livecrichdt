@@ -21,9 +21,6 @@ https://bpweb5.akamaized.net/bpk-tv/irdeto_com_Channel_251/output/manifest.mpd?h
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36
 https://bpweb3.akamaized.net/bpk-tv/irdeto_com_Channel_252/output/manifest.mpd?hdntl=exp=1718604037~acl=%2f*~data=hdntl~hmac=93cdbf4598bb3d0cde8f02cbe02d64c60850183006bc79c971f03bab3559ba5f
 
-#EXTINF:-1 group-title="T20 WC" tvg-logo="https://img.icons8.com/?size=48&id=63306&format=png", -- @PremiumByND TG --
-https://manifest.premiumbynd.workers.dev/play.php?stream=manifest.mpd
-
 #EXTINF:-1 tvg-id="824.astro" group-title="T20 WC" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b7/Astro_Cricket.png" group-logo="https://png.pngtree.com/png-clipart/20240103/original/pngtree-t-20-world-cup-2024-logo-skecth-look-vector-png-image_14006779.png", Astro Cricket
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
