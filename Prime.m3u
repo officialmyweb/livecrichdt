@@ -1,6 +1,5 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="prime50fps" tvg-name="Prime 50fps" tvg-logo="" group-title="Live",Prime 50fps
-#EXTVLCOPT:network-caching=1000
-#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
-#KODIPROP:inputstream.adaptive.license_key=https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/clients/dash/enc/iwzi8fxh4z/out/v1/0e29b056e9c04ae180ef297263d2967d/cenc.mpd|ZH64-_FlcUDqFj3JsyVokw:XCjnKHTNT3O57TeZV-i6Qg
+#EXTVLCOPT:inputstream.adaptive.license_type=org.w3.clearkey
+#EXTVLCOPT:inputstream.adaptive.license_key=ZH64-_FlcUDqFj3JsyVokw:XCjnKHTNT3O57TeZV-i6Qg
 https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/clients/dash/enc/iwzi8fxh4z/out/v1/0e29b056e9c04ae180ef297263d2967d/cenc.mpd
