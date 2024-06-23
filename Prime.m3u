@@ -1,4 +1,3 @@
 #EXTM3U
-#EXT-X-VERSION:3
-#EXT-X-STREAM-INF:BANDWIDTH=1280000
+#EXTINF:-1, Video Stream
 https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/clients/dash/enc/iwzi8fxh4z/out/v1/0e29b056e9c04ae180ef297263d2967d/cenc.mpd?|drmScheme=clearkey&drmLicense=ZH64-_FlcUDqFj3JsyVokw:XCjnKHTNT3O57TeZV-i6Qg
