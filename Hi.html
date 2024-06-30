@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rugby Match Streams</title>
+    <style>
+        .match {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .flags img {
+            width: 50px;
+            height: auto;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rugby Match Streams</h1>
+    <div id="matches"></div>
+
+    <script>
+        async function fetchMatches() {
+            const response = await fetch('https://livecrichdtv.pages.dev/Me');
+            const data = await response.json();
+            return data;
+        }
+
+        function createMatchElement(match) {
+            const matchElement = document.createElement('div');
+            matchElement.classList.add('match');
+            matchElement.innerHTML = `
+                <h2>${match.event_name}</h2>
+                <p>${match.match_name}</p>
+                <div class="flags">
+                    <img src="${match.team_1_flag}" alt="${match.team_1} Flag">
+                    <span>vs</span>
+                    <img src="${match.team_2_flag}" alt="${match.team_2} Flag">
+                </div>
+                <p>${match.team_1} vs ${match.team_2}</p>
+                <video controls>
+                    <source src="${match.stream_link}" type="application/x-mpegURL">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+            return matchElement;
+        }
+
+        async function displayMatches() {
+            const matchesContainer = document.getElementById('matches');
+            const matches = await fetchMatches();
+
+            matches.forEach(match => {
+                const matchElement = createMatchElement(match);
+                matchesContainer.appendChild(matchElement);
+            });
+        }
+
+        displayMatches();
+    </script>
+</body>
+</html>
