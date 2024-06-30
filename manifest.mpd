@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MPD profiles="urn:mpeg:dash:profile:isoff-live:2011" type="dynamic" availabilityStartTime="2024-06-18T04:44:29Z" minimumUpdatePeriod="PT8.0S" minBufferTime="PT8.0S" publishTime="2024-06-27T11:49:38.427Z" timeShiftBufferDepth="PT2H" xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" xmlns:dolby="http://www.dolby.com/ns/online/DASH">
+<MPD profiles="urn:mpeg:dash:profile:isoff-live:2011" type="dynamic" availabilityStartTime="2024-06-18T04:44:29Z" minimumUpdatePeriod="PT8.0S" minBufferTime="PT8.0S" publishTime="2024-06-30T11:54:32.832Z" timeShiftBufferDepth="PT2H" xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" xmlns:dolby="http://www.dolby.com/ns/online/DASH">
     <Period start="PT0.0000000S" id="1">
         <AdaptationSet mimeType="video/mp4" startWithSAP="1" segmentAlignment="true" par="16:9">
             <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"></ContentProtection>
@@ -8,20 +8,7 @@
             <ContentProtection schemeIdUri="urn:uuid:5e629af5-38da-4063-8977-97ffbd9902d4"><mas:MarlinContentIds xmlns:mas="urn:marlin:mas:1-0:services:schemas:mpd"><mas:MarlinContentId>urn:marlin:kid:00053ac1e9b1231eed3eb4e3540b3ae1</mas:MarlinContentId></mas:MarlinContentIds></ContentProtection>
             <SegmentTemplate timescale="10000000" presentationTimeOffset="0" media="$RepresentationID$_Segment-$Time$.m4v" initialization="$RepresentationID$_init.m4i">
                 <SegmentTimeline>
-                    <S t="7959371381720" d="80000000" r="115"></S>
-                    <S t="7968651381720" d="79200000"></S>
-                    <S t="7968730581720" d="80800000"></S>
-                    <S t="7968811381720" d="80000000" r="280"></S>
-                    <S t="7991291381720" d="69200000"></S>
-                    <S t="7991360581720" d="90800000"></S>
-                    <S t="7991451381720" d="80000000" r="202"></S>
-                    <S t="8007691381720" d="69200000"></S>
-                    <S t="8007760581720" d="90800000"></S>
-                    <S t="8007851381720" d="80000000" r="203"></S>
-                    <S t="8024171381720" d="74800000"></S>
-                    <S t="8024246181720" d="85200000"></S>
-                    <S t="8024331381720" d="80000000" r="86"></S>
-                </SegmentTimeline>
+                    <S t="10554251381720" d="80000000" r="899"></S>                </SegmentTimeline>
             </SegmentTemplate>
             <Representation width="256" height="144" frameRate="25" codecs="avc1.4d4020" scanType="progressive" sar="1:1" id="1718685849285item-02item" bandwidth="90000"></Representation>
             <Representation width="512" height="288" frameRate="25" codecs="avc1.4d4020" scanType="progressive" sar="1:1" id="1718685849285item-03item" bandwidth="351000"></Representation>
@@ -37,20 +24,7 @@
             <ContentProtection schemeIdUri="urn:uuid:5e629af5-38da-4063-8977-97ffbd9902d4"><mas:MarlinContentIds xmlns:mas="urn:marlin:mas:1-0:services:schemas:mpd"><mas:MarlinContentId>urn:marlin:kid:00053ac1e9b1231eed3eb4e3540b3ae1</mas:MarlinContentId></mas:MarlinContentIds></ContentProtection>
             <SegmentTemplate timescale="10000000" presentationTimeOffset="0" media="$RepresentationID$_Segment-$Time$.m4a" initialization="$RepresentationID$_init.m4i">
                 <SegmentTimeline>
-                    <S t="7959371490416" d="80000000" r="115"></S>
-                    <S t="7968651490416" d="79146667"></S>
-                    <S t="7968730637083" d="80853333"></S>
-                    <S t="7968811490416" d="80000000" r="280"></S>
-                    <S t="7991291490416" d="69120000"></S>
-                    <S t="7991360610416" d="90880000"></S>
-                    <S t="7991451490416" d="80000000" r="202"></S>
-                    <S t="8007691490416" d="69120000"></S>
-                    <S t="8007760610416" d="90880000"></S>
-                    <S t="8007851490416" d="80000000" r="203"></S>
-                    <S t="8024171490416" d="74880000"></S>
-                    <S t="8024246370416" d="85120000"></S>
-                    <S t="8024331490416" d="80000000" r="86"></S>
-                </SegmentTimeline>
+                    <S t="10554251490416" d="80000000" r="899"></S>                </SegmentTimeline>
             </SegmentTemplate>
             <Representation audioSamplingRate="48000" codecs="mp4a.40.2" id="1718685849285item-09item" bandwidth="128000"></Representation>
         </AdaptationSet>
@@ -58,20 +32,7 @@
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
             <SegmentTemplate timescale="10000000" presentationTimeOffset="0" media="$RepresentationID$_Segment-$Time$.m4s" initialization="$RepresentationID$_init.m4i">
                 <SegmentTimeline>
-                    <S t="7959371381720" d="80000000" r="115"></S>
-                    <S t="7968651381720" d="79200000"></S>
-                    <S t="7968730581720" d="80800000"></S>
-                    <S t="7968811381720" d="80000000" r="280"></S>
-                    <S t="7991291381720" d="69200000"></S>
-                    <S t="7991360581720" d="90800000"></S>
-                    <S t="7991451381720" d="80000000" r="202"></S>
-                    <S t="8007691381720" d="69200000"></S>
-                    <S t="8007760581720" d="90800000"></S>
-                    <S t="8007851381720" d="80000000" r="203"></S>
-                    <S t="8024171381720" d="74800000"></S>
-                    <S t="8024246181720" d="85200000"></S>
-                    <S t="8024331381720" d="80000000" r="86"></S>
-                </SegmentTimeline>
+                    <S t="10554251381720" d="80000000" r="899"></S>                </SegmentTimeline>
             </SegmentTemplate>
             <Representation codecs="stpp" id="1718685849285item-12item" bandwidth="15000"></Representation>
         </AdaptationSet>
