@@ -2,7 +2,7 @@
 
 // Allow access only from specific domains
 $allowed_origins = [
-    'https://livecrichdofficial.pages.dev' // Add your allowed domain here
+    'livecrichdofficial.000webhostapp.com' // Add your allowed domain here
 ];
 
 if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {
