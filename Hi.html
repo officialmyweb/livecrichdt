@@ -1,69 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match Streams</title>
+    <title>Embedded Video</title>
     <style>
-        .match {
-            border: 1px solid #ccc;
-            margin: 10px;
-            padding: 10px;
-            text-align: center;
-        }
-        .flags img {
-            width: 50px;
-            height: auto;
-        }
-        video {
+        .wrapper {
+            position: relative;
             width: 100%;
-            height: auto;
+            height: 60vh; 
+            overflow: hidden;
+        }
+        .video-frame {
+            position: absolute;
+            top: -111px; 
+            left: 0;
+            width: 100%;
+            height: calc(100% - 50px); /* Corrected the height calculation */
+            border: none;
         }
     </style>
+    <script>
+        window.onload = function() {
+            if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
+                window.location.href = "https://telegram.me/livecrichdofficial";
+            } else {
+                // Create the wrapper div
+                var wrapper = document.createElement('div');
+                wrapper.id = "video-wrapper";
+                wrapper.className = "wrapper";
+                
+                // Create the iframe
+                var iframe = document.createElement('iframe');
+                iframe.src = "https://streamsl.fun/app/play.php?cid=Sports18_Khel&id=1998";
+                iframe.className = "video-frame";
+                iframe.setAttribute("scrolling", "no");
+                
+                // Append the iframe to the wrapper
+                wrapper.appendChild(iframe);
+                
+                // Append the wrapper to the body
+                document.body.appendChild(wrapper);
+            }
+        };
+    </script>
 </head>
 <body>
-    <h1>Match Streams</h1>
-    <div id="matches"></div>
-
-    <script>
-        async function fetchMatches() {
-            const response = await fetch('https://livecrichdtv.pages.dev/Me');
-            const text = await response.text();
-            const data = JSON.parse(text.match(/<pre.*?>([\s\S]*?)<\/pre>/)[1]);
-            return data;
-        }
-
-        function createMatchElement(match) {
-            const matchElement = document.createElement('div');
-            matchElement.classList.add('match');
-            matchElement.innerHTML = `
-                <h2>${match.event_name}</h2>
-                <p>${match.match_name}</p>
-                <div class="flags">
-                    <img src="${match.team_1_flag}" alt="${match.team_1} Flag">
-                    <span>vs</span>
-                    <img src="${match.team_2_flag}" alt="${match.team_2} Flag">
-                </div>
-                <p>${match.team_1} vs ${match.team_2}</p>
-                <video controls>
-                    <source src="${match.stream_link}" type="application/x-mpegURL">
-                    Your browser does not support the video tag.
-                </video>
-            `;
-            return matchElement;
-        }
-
-        async function displayMatches() {
-            const matchesContainer = document.getElementById('matches');
-            const matches = await fetchMatches();
-
-            matches.forEach(match => {
-                const matchElement = createMatchElement(match);
-                matchesContainer.appendChild(matchElement);
-            });
-        }
-
-        displayMatches();
-    </script>
 </body>
 </html>
