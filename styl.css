@@ -1,0 +1,15 @@
+.wrapper {
+            position: relative;
+            width: 100%;
+            height: 60vh; 
+            overflow: hidden;
+        }
+        .video-frame {
+            position: absolute;
+            top: -111px; 
+            left: 0;
+            width: 100%;
+            height: calc(100% + -50px); 
+            border: none;
+            pointer-events: auto;
+        }
