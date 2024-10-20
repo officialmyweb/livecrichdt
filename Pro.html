@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Embedded Video</title>
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram-Live-Cric-Hd</title>
-    <link rel="stylesheet" href="styl.css"> 
-    </head>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling for the entire page */
+        }
+
+        /* Container for the iframe */
+        .iframe-container {
+            width: 100%;
+            height: 250px; /* Set height for the video frame */
+            overflow: hidden; /* Hide any overflow */ /* Positioning context for the iframe */
+        }
+
+        iframe {
+            position: absolute;
+            top: -100px; /* Shift the iframe upwards to cut off the top */
+            left: 0;
+            width: 100%;
+            height: 350px; /* Set iframe height larger to avoid scroll */
+            border: none; /* Remove border */
+            pointer-events: auto; /* Disable interactions with the iframe */
+        }
+    </style>
 </head>
 <body>
-    <div class="wrapper">
-        <iframe src="https://s7.24cwc.com/" class="video-frame" scrolling="no"></iframe>
+    <script>
+    if (confirm("Join Our Telegram Channel @livecrichdofficial")) {window.location.href = "https://telegram.me/livecrichdofficial";}
+        </script>
+    <div class="iframe-container">
+        <iframe src="https://s7.24cwc.com/" allow="autoplay; fullscreen"></iframe>
     </div>
 </body>
 </html>
