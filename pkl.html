@@ -24,21 +24,23 @@
 <div id="player"></div>
 
 <script>
-      if (confirm("Join Our Telegram Channel @livecrichdofficial")) {window.location.href = "https://telegram.me/livecrichdofficial";}
-  
+    if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
+        window.location.href = "https://telegram.me/livecrichdofficial";
+    }
+
     jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 
     window.onload = function() {
         var playerInstance = jwplayer("player");
-        
-        // Define the HLS stream source
+
+        // Define the DASH stream source
         var source = {
             "file": "https://vkvsd185.mycdn.me/cmaf/7222941125351/sig/jj3LNu5cFy0/expires/1729858342211/srcIp/171.79.98.253/urls/45.136.21.42/clientType/13/srcAg/CHROME_ANDROID/mid/8014978427879/get/dash_8014978427879.RNeO3GbN8wk.mpd",
-            "type": "hls",
+            "type": "dash",
             "default": true
         };
 
-        // Player setup with the HLS stream source
+        // Player setup with the DASH stream source
         playerInstance.setup({
             playlist: [{
                 "sources": [source]
