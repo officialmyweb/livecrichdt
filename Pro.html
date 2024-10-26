@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram-Live-Cric-Hd</title>
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .iframe-wrapper {
+            width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevent scrolling for the entire page */
+            overflow: hidden; /* Hides the top portion of the iframe */
         }
 
-        /* Container for the iframe */
-        .iframe-container {
+        #contentFrame {
             width: 100%;
-            height: 250px; /* Set height for the video frame */
-            overflow: hidden; /* Hide any overflow */ /* Positioning context for the iframe */
-        }
-
-        iframe {
-            position: absolute;
-            top: -100px; /* Shift the iframe upwards to cut off the top */
-            left: 0;
-            width: 100%;
-            height: 350px; /* Set iframe height larger to avoid scroll */
-            border: none; /* Remove border */
-            pointer-events: auto; /* Disable interactions with the iframe */
+            height: 43%;
+            border: none;
+            margin-top: -100px; /* Adjusts how much of the iframe to cut from the top */
         }
     </style>
 </head>
+
 <body>
-    <script>
-    if (confirm("Join Our Telegram Channel @livecrichdofficial")) {window.location.href = "https://telegram.me/livecrichdofficial";}
-        </script>
-    <div class="iframe-container">
-        <iframe src="https://s7.24cwc.com/" allow="autoplay; fullscreen"></iframe>
+    <div class="iframe-wrapper">
+        <iframe id="contentFrame"
+                sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen="true"
+                scrolling="no" src="https://s7.24cwc.com">
+        </iframe>
     </div>
+    <script>
+        if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
+            window.location.href = "https://telegram.me/livecrichdofficial";
+        }
+    </script>
 </body>
+
 </html>
