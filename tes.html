@@ -3,17 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match Display</title>
+    <title>Hong Kong Sixes, 2024</title>
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            background-color: #f0f0f0;
+            background-color: #000; /* Black background */
             font-family: Arial, sans-serif;
+            color: #fff;
             margin: 0;
             padding: 20px;
         }
+        /* Header styling */
+        .header {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+            margin: 20px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        /* Telegram button styling */
+        .telegram-btn {
+            background-color: #0088cc;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        /* Container and Card styling */
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -22,13 +46,14 @@
             justify-content: center;
         }
         .card {
-            background-color: #fff;
-            border: 1px solid #ddd;
+            background-color: #8B4513; /* Brown color for cards */
+            color: #fff;
+            border: 1px solid #654321;
             border-radius: 10px;
             width: 300px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
         .card img {
@@ -40,16 +65,16 @@
         .card h2 {
             font-size: 1.2em;
             margin: 10px 0;
-            color: #333;
+            color: #ffd700; /* Gold color for event name */
             font-weight: bold;
         }
         .card p {
             font-size: 1em;
-            color: #666;
+            color: #fff;
             margin: 5px 0;
         }
         .watch-btn {
-            background-color: #0088cc;
+            background-color: #ff4500; /* Red-orange for button */
             color: white;
             font-size: 1em;
             padding: 10px 20px;
@@ -64,6 +89,10 @@
     </style>
 </head>
 <body>
+
+<div class="header">HONG KONG SIXES, 2024</div>
+
+<a class="telegram-btn" href="https://telegram.me/+er7vZ_4VHpthZWZl" target="_blank">Join Telegram Channel</a>
 
 <div class="container" id="matches-container"></div>
 
