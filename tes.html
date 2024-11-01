@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hong Kong Sixes, 2024</title>
+    <title>Match Display</title>
     <style>
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #000;
+            background-color: #f0f0f0;
             font-family: Arial, sans-serif;
-            color: #fff;
             margin: 0;
             padding: 20px;
         }
-        .header {
-            font-size: 2.5em;
+        h1 {
+            font-size: 2em;
             font-weight: bold;
-            color: #fff;
-            margin: 20px 0;
-            letter-spacing: 1px;
+            color: #333;
             text-transform: uppercase;
+            margin: 10px 0;
             text-align: center;
         }
-        .telegram-btn {
+        .join-btn {
             background-color: #0088cc;
-            color: #fff;
-            font-size: 1.2em;
-            font-weight: bold;
+            color: white;
+            font-size: 1em;
             padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-bottom: 30px;
-            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
         }
         .container {
             display: flex;
@@ -43,14 +40,13 @@
             justify-content: center;
         }
         .card {
-            background-color: #8B4513;
-            color: #fff;
-            border: 1px solid #654321;
+            background-color: #fff;
+            border: 1px solid #ddd;
             border-radius: 10px;
             width: 300px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
         .card img {
@@ -62,16 +58,16 @@
         .card h2 {
             font-size: 1.2em;
             margin: 10px 0;
-            color: #ffd700;
+            color: #333;
             font-weight: bold;
         }
         .card p {
             font-size: 1em;
-            color: #fff;
+            color: #666;
             margin: 5px 0;
         }
         .watch-btn {
-            background-color: #ff4500;
+            background-color: #0088cc;
             color: white;
             font-size: 1em;
             padding: 10px 20px;
@@ -87,48 +83,54 @@
 </head>
 <body>
 
-<div class="header">HONG KONG SIXES, 2024</div>
-
-<a class="telegram-btn" href="https://telegram.me/+er7vZ_4VHpthZWZl" target="_blank">Join Telegram Channel</a>
+<h1>Hong Kong Sixes</h1>
+<button class="join-btn" onclick="window.location.href='https://telegram.me/livecrichdofficial'">Join Telegram</button>
 
 <div class="container" id="matches-container"></div>
 
 <script>
+    // Fetch and display matches based on event name filter
     async function fetchAndDisplayMatches() {
         const response = await fetch('https://raw.githubusercontent.com/drmlive/fancode-live-events/main/fancode.json');
         const data = await response.json();
 
+        // Filter matches based on event name
         const filteredMatches = data.matches.filter(match => match.event_name === "Hong Kong Sixes, 2024");
 
         const container = document.getElementById('matches-container');
         container.innerHTML = '';
 
+        // Display each match in a card
         filteredMatches.forEach(match => {
             const card = document.createElement('div');
             card.className = 'card';
 
-            // Format button based on match status
-            const buttonText = match.status === "LIVE" ? "Watch Now" : "Upcoming";
-            const statusText = match.status === "LIVE" ? "LIVE" : `Starts at: ${match.startTime}`;
+            // Determine button text and start time label
+            const isUpcoming = match.status === "upcoming";
+            const buttonText = isUpcoming ? "Upcoming" : "Watch Now";
+            const startTimeText = isUpcoming ? `Start Time: ${match.start_time}` : "Live";
 
             card.innerHTML = `
                 <img src="${match.src}" alt="Match Image">
                 <h2>${match.event_name}</h2>
                 <p>Match: ${match.match_name}</p>
-                <p style="font-weight: bold; color: ${match.status === "LIVE" ? "#00ff00" : "#fff"};">${statusText}</p>
+                <p>${startTimeText}</p>
                 <button class="watch-btn" onclick="redirectToPlayer('${match.adfree_url}')">${buttonText}</button>
             `;
 
+            // Redirect on card click as well
             card.onclick = () => redirectToPlayer(match.adfree_url);
 
             container.appendChild(card);
         });
     }
 
+    // Redirect to the player page with adfree_url as a parameter
     function redirectToPlayer(adfreeUrl) {
         window.location.href = `https://livecrichdm3u8player.pages.dev/?dtv=${encodeURIComponent(adfreeUrl)}`;
     }
 
+    // Fetch matches on page load
     fetchAndDisplayMatches();
 </script>
 
