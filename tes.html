@@ -9,13 +9,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #000; /* Black background */
+            background-color: #000;
             font-family: Arial, sans-serif;
             color: #fff;
             margin: 0;
             padding: 20px;
         }
-        /* Header styling */
         .header {
             font-size: 2.5em;
             font-weight: bold;
@@ -25,7 +24,6 @@
             text-transform: uppercase;
             text-align: center;
         }
-        /* Telegram button styling */
         .telegram-btn {
             background-color: #0088cc;
             color: #fff;
@@ -37,7 +35,6 @@
             margin-bottom: 30px;
             text-align: center;
         }
-        /* Container and Card styling */
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -46,7 +43,7 @@
             justify-content: center;
         }
         .card {
-            background-color: #8B4513; /* Brown color for cards */
+            background-color: #8B4513;
             color: #fff;
             border: 1px solid #654321;
             border-radius: 10px;
@@ -65,7 +62,7 @@
         .card h2 {
             font-size: 1.2em;
             margin: 10px 0;
-            color: #ffd700; /* Gold color for event name */
+            color: #ffd700;
             font-weight: bold;
         }
         .card p {
@@ -74,7 +71,7 @@
             margin: 5px 0;
         }
         .watch-btn {
-            background-color: #ff4500; /* Red-orange for button */
+            background-color: #ff4500;
             color: white;
             font-size: 1em;
             padding: 10px 20px;
@@ -97,42 +94,41 @@
 <div class="container" id="matches-container"></div>
 
 <script>
-    // Fetch and display matches based on event name filter
     async function fetchAndDisplayMatches() {
         const response = await fetch('https://raw.githubusercontent.com/drmlive/fancode-live-events/main/fancode.json');
         const data = await response.json();
 
-        // Filter matches based on event name
         const filteredMatches = data.matches.filter(match => match.event_name === "Hong Kong Sixes, 2024");
 
         const container = document.getElementById('matches-container');
         container.innerHTML = '';
 
-        // Display each match in a card
         filteredMatches.forEach(match => {
             const card = document.createElement('div');
             card.className = 'card';
+
+            // Format button based on match status
+            const buttonText = match.status === "LIVE" ? "Watch Now" : "Upcoming";
+            const statusText = match.status === "LIVE" ? "LIVE" : `Starts at: ${match.startTime}`;
 
             card.innerHTML = `
                 <img src="${match.src}" alt="Match Image">
                 <h2>${match.event_name}</h2>
                 <p>Match: ${match.match_name}</p>
-                <button class="watch-btn" onclick="redirectToPlayer('${match.adfree_url}')">Watch Now</button>
+                <p style="font-weight: bold; color: ${match.status === "LIVE" ? "#00ff00" : "#fff"};">${statusText}</p>
+                <button class="watch-btn" onclick="redirectToPlayer('${match.adfree_url}')">${buttonText}</button>
             `;
 
-            // Redirect on card click as well
             card.onclick = () => redirectToPlayer(match.adfree_url);
 
             container.appendChild(card);
         });
     }
 
-    // Redirect to the player page with adfree_url as a parameter
     function redirectToPlayer(adfreeUrl) {
         window.location.href = `https://livecrichdm3u8player.pages.dev/?dtv=${encodeURIComponent(adfreeUrl)}`;
     }
 
-    // Fetch matches on page load
     fetchAndDisplayMatches();
 </script>
 
