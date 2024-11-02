@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +27,27 @@
 
     // Function to decode Base64
     function decodeBase64(base64String) {
-        // Decode the Base64 string and convert to a Uint8Array
-        const binaryString = atob(base64String);
-        const len = binaryString.length;
-        const bytes = new Uint8Array(len);
-        for (let i = 0; i < len; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
+        try {
+            const binaryString = atob(base64String);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return new TextDecoder("utf-8").decode(bytes);
+        } catch (error) {
+            console.error("Base64 decoding error:", error);
+            return null;
         }
-        return new TextDecoder("utf-8").decode(bytes);
     }
 
     // Function to setup the JW Player
     function setupPlayer(bearerToken) {
+        if (!bearerToken) {
+            console.error("Invalid Bearer token");
+            return;
+        }
+
         var playerInstance = jwplayer("player");
 
         // Define the DASH stream source with the Authorization header
@@ -80,7 +88,7 @@
     function fetchData() {
         // Example Base64 data from the server
         const base64Data = "gtvlRKWUCOOsTr7mPRpcmg3pqqIH1dMb2Lq9CuBnzNVlZkalEIkJVlD52oMa+RUE+hv4XqFxKk16f/uJYLgWxn6s1MQjYnWDNPteJYxT17GclXDJ6itM3c0XYhxuiGc3dvJhmVquqdQeRJVyn7fZYItn5MtD9lwqiykWQmfvFP+2nVCItaQAnDTzI2OZckrVTZxJ4bhcJaES4C53MvhzJqKw6bOs804eX2TxeEg6OzA1JUrAHEl4XjjYtFB3mCjOQnA8jH2lvny205wCgi2TdUpXPUtYK7HbPsv2ZUNuMRQ4pArbrUuptwWjIDmq8fHjPFWcd1LIQmTO8fjodrXHpykFuOjqIQS6hkc0PYsTRMTRJA4YZhOjeaNJK2Gfb0M+7MKFY4VchKeqiXtQL43l0gKZALghJc3uPwzo146dhsEKI3Ym2qG95fGbiiagYDVUTe/3lwZMj7MSVuYlGHzhXTHx9RcuukMK35PeY9wS/7oLboymHGGTIPY5fdFW4Gseqfz9J5p6/KLu1OJqGDOy7ckVHeWf+1P9qMi9at5gdmDb1Jarrvp6UH/qfSmwguFfd+V36QXeT/phIxj27GY7YPiK1FHpk4bQG3vkMxYDpXWc/rl9mbgU6TWYHGDXk9UEiUcXuLiNtO4rOjqzxwOfOQ==";
-        
+
         // Decode the Base64 data to get the Bearer token
         const bearerToken = decodeBase64(base64Data);
         console.log("Decoded Bearer Token: ", bearerToken);
