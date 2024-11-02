@@ -39,13 +39,10 @@
         };
         ui.configure(config);
 
-        // Encrypted token directly as Bearer token
-        const encryptedToken = "gtvlRKWUCOOsTr7mPRpcmg3pqqIH1dMb2Lq9CuBnzNVlZkalEIkJVlD52oMa+RUE+hv4XqFxKk16f/uJYLgWxn6s1MQjYnWDNPteJYxT17GclXDJ6itM3c0XYhxuiGc3dvJhmVquqdQeRJVyn7fZYItn5MtD9lwqiykWQmfvFP+2nVCItaQAnDTzI2OZckrVTZxJ4bhcJaES4C53MvhzJqKw6bOs804eX2TxeEg6OzA1JUrAHEl4XjjYtFB3mCjOQnA8jH2lvny205wCgi2TdUpXPUtYK7HbPsv2ZUNuMRQ4pArbrUuptwWjIDmq8fHjPFWcd1LIQmTO8fjodrXHpykFuOjqIQS6hkc0PYsTRMTRJA4YZhOjeaNJK2Gfb0M+7MKFY4VchKeqiXtQL43l0gKZALghJc3uPwzo146dhsEKI3Ym2qG95fGbiiagYDVUTe/3lwZMj7MSVuYlGHzhXTHx9RcuukMK35PeY9wS/7oLboymHGGTIPY5fdFW4Gseqfz9J5p6/KLu1OJqGDOy7ckVHeWf+1P9qMi9at5gdmDb1Jarrvp6UH/qfSmwguFfd+V36QXeT/phIxj27GY7YPiK1FHpk4bQG3vkMxYDpXWc/rl9mbgU6TWYHGDXk9UEiUcXuLiNtO4rOjqzxwOfOQ==";
-
         // Add request filter to add the Authorization header
         player.getNetworkingEngine().registerRequestFilter(function(type, request) {
             if (type === shaka.net.NetworkingEngine.RequestType.MANIFEST || type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
-                request.headers['Authorization'] = 'Bearer ' + encryptedToken;
+                request.headers['Authorization'] = 'Bearer gtvlRKWUCOOsTr7mPRpcmg3pqqIH1dMb2Lq9CuBnzNVlZkalEIkJVlD52oMa+RUE+hv4XqFxKk16f/uJYLgWxn6s1MQjYnWDNPteJYxT17GclXDJ6itM3c0XYhxuiGc3dvJhmVquqdQeRJVyn7fZYItn5MtD9lwqiykWQmfvFP+2nVCItaQAnDTzI2OZckrVTZxJ4bhcJaES4C53MvhzJqKw6bOs804eX2TxeEg6OzA1JUrAHEl4XjjYtFB3mCjOQnA8jH2lvny205wCgi2TdUpXPUtYK7HbPsv2ZUNuMRQ4pArbrUuptwWjIDmq8fHjPFWcd1LIQmTO8fjodrXHpykFuOjqIQS6hkc0PYsTRMTRJA4YZhOjeaNJK2Gfb0M+7MKFY4VchKeqiXtQL43l0gKZALghJc3uPwzo146dhsEKI3Ym2qG95fGbiiagYDVUTe/3lwZMj7MSVuYlGHzhXTHx9RcuukMK35PeY9wS/7oLboymHGGTIPY5fdFW4Gseqfz9J5p6/KLu1OJqGDOy7ckVHeWf+1P9qMi9at5gdmDb1Jarrvp6UH/qfSmwguFfd+V36QXeT/phIxj27GY7YPiK1FHpk4bQG3vkMxYDpXWc/rl9mbgU6TWYHGDXk9UEiUcXuLiNtO4rOjqzxwOfOQ==';
             }
         });
 
@@ -101,4 +98,3 @@
 
 </body>
 </html>
-              
