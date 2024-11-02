@@ -26,20 +26,24 @@
 <script>
     jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 
-    function getToken() {
-        // This function should retrieve or generate the token
-        return localStorage.getItem("authToken") || "defaultToken"; // Example retrieval
+    function decodeBase64(base64String) {
+        // Decode the Base64 string
+        const binaryString = atob(base64String);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        // Convert to UTF-8 string
+        return new TextDecoder("utf-8").decode(bytes);
     }
 
     function fetchData() {
-        // Hardcoded Base64 data (replace with your actual data if needed)
+        // Hardcoded Base64 data
         var base64Data = "gtvlRKWUCOOsTr7mPRpcmg3pqqIH1dMb2Lq9CuBnzNVlZkalEIkJVlD52oMa+RUE+hv4XqFxKk16f/uJYLgWxn6s1MQjYnWDNPteJYxT17GclXDJ6itM3c0XYhxuiGc3dvJhmVquqdQeRJVyn7fZYItn5MtD9lwqiykWQmfvFP+2nVCItaQAnDTzI2OZckrVTZxJ4bhcJaES4C53MvhzJqKw6bOs804eX2TxeEg6OzA1JUrAHEl4XjjYtFB3mCjOQnA8jH2lvny205wCgi2TdUpXPUtYK7HbPsv2ZUNuMRQ4pArbrUuptwWjIDmq8fHjPFWcd1LIQmTO8fjodrXHpykFuOjqIQS6hkc0PYsTRMTRJA4YZhOjeaNJK2Gfb0M+7MKFY4VchKeqiXtQL43l0gKZALghJc3uPwzo146dhsEKI3Ym2qG95fGbiiagYDVUTe/3lwZMj7MSVuYlGHzhXTHx9RcuukMK35PeY9wS/7oLboymHGGTIPY5fdFW4Gseqfz9J5p6/KLu1OJqGDOy7ckVHeWf+1P9qMi9at5gdmDb1Jarrvp6UH/qfSmwguFfd+V36QXeT/phIxj27GY7YPiK1FHpk4bQG3vkMxYDpXWc/rl9mbgU6TWYHGDXk9UEiUcXuLiNtO4rOjqzxwOfOQ==";
 
-        // Decode the base64 data
-        var decodedData = atob(base64Data);
-
-        // If the decoded data is UTF-8 encoded, convert it to a proper string
-        var decodedString = new TextDecoder("utf-8").decode(new Uint8Array([...decodedData].map(c => c.charCodeAt(0))));
+        // Decode the Base64 data
+        var decodedString = decodeBase64(base64Data);
         
         console.log("Decoded Bearer Token: ", decodedString);
 
