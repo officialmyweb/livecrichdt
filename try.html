@@ -3,105 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
-    <title>JWPlayer with DASH</title>
-    <script src="//ssl.p.jwpcdn.com/player/v/8.25.1/jwplayer.js"></script>
+    <title>JW Player Setup</title>
+    <link rel="stylesheet" href="https://cdn.jwplayer.com/libraries/your-library-id.css">
+    <style>
+        /* Basic styling */
+        #jwplayerDiv {
+            width: 100%;
+            height: 100%;
+        }
+        #myModal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-    }
-    .jwplayer {
-        position: absolute !important;
-        width: 100%;
-        height: 100%;
-    }
-</style>
 <body>
 
-<div id="player"></div>
+<div id="jwplayerDiv"></div>
 
+<div id="myModal">
+    <div class="modal-content">
+        <h2>Join Our Channel</h2>
+        <p>To watch this video, please join our Telegram channel.</p>
+        <button id="joinChannel">Join Channel</button>
+        <button id="alreadyJoined">Already Joined</button>
+        <button id="closeModal">Close</button>
+    </div>
+</div>
+
+<script src="https://cdn.jwplayer.com/libraries/your-library-id.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script>
-    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById('myModal');
+    modal.style.display = "flex";
 
-    // Function to decode Base64
-    function decodeBase64(base64String) {
-        try {
-            const binaryString = atob(base64String);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
+    // Close modal event listener
+    document.getElementById('closeModal').addEventListener('click', function () {
+        modal.style.display = "none";
+    });
+
+    // Redirect to Telegram channel
+    document.getElementById("joinChannel").addEventListener('click', function () {
+        window.location.href = "https://telegram.me/psplaylink"; // Replace with your channel link
+    });
+
+    // Close modal if already joined
+    document.getElementById("alreadyJoined").addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Fetch MPD URL directly from Cloudflare Worker
+    fetch(`https://checkmpd.aadrapristha.workers.dev/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Error fetching data:", data.error);
+                return;
             }
-            return new TextDecoder("utf-8").decode(bytes);
-        } catch (error) {
-            console.error("Base64 decoding error:", error);
-            return null;
-        }
-    }
 
-    // Function to setup the JW Player
-    function setupPlayer(bearerToken) {
-        if (!bearerToken) {
-            console.error("Invalid Bearer token");
-            return;
-        }
-
-        var playerInstance = jwplayer("player");
-
-        // Define the DASH stream source with the Authorization header
-        var source = {
-            "file": "https://d1yws6emo43ny.cloudfront.net/CH5/masterCH5.mpd",
-            "type": "dash",
-            "default": true,
-            onXhrOpen: function(xhr, url) {
-                // Set Authorization header using the decoded Bearer token
-                xhr.setRequestHeader('Authorization', 'Bearer ' + bearerToken);
+            const key = CryptoJS.enc.Utf8.parse("12345678901234567890123456789012"); // Example key
+            const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); // Example IV
+            const decryptedData = CryptoJS.AES.decrypt(data.data, key, { iv: iv }).toString(CryptoJS.enc.Utf8);
+            
+            try {
+                const videoData = JSON.parse(decryptedData);
+                setupPlayer(videoData.url);
+                interceptRequests(videoData.Bearer);
+            } catch (error) {
+                console.error("Error parsing decrypted data:", error);
             }
-        };
+        })
+        .catch(error => console.error("Error fetching data:", error));
 
-        // Configure DRM clear key
-        source.drm = {
-            "clearkey": {
-                "keyId": "a8eb0f152c6e429ca7a53f399aadf257",
-                "key": "c593c2eeea62742285b99e4d87b1c84a"
-            }
-        };
-
-        // Player setup with the DASH stream source
-        playerInstance.setup({
-            playlist: [{
-                "sources": [source]
-            }],
+    // Function to set up JWPlayer based on the video URL
+    function setupPlayer(videoUrl) {
+        const playerConfig = {
+            file: videoUrl,
             width: "100%",
             height: "100%",
-            aspectratio: "16:9",
             autostart: true,
-            cast: {
-                appid: 'CC1AD845' // Chromecast support
-            }
-        });
+            skin: { name: 'netflix' },
+            logo: { file: '#', link: "https://telegram.me/psplaylink", position: "top-left" }
+        };
+
+        jwplayer("jwplayerDiv").setup(playerConfig);
     }
 
-    // Fetch Base64 data and decode it
-    function fetchData() {
-        // Example Base64 data from the server
-        const base64Data = "gtvlRKWUCOOsTr7mPRpcmg3pqqIH1dMb2Lq9CuBnzNVlZkalEIkJVlD52oMa+RUE+hv4XqFxKk16f/uJYLgWxn6s1MQjYnWDNPteJYxT17GclXDJ6itM3c0XYhxuiGc3dvJhmVquqdQeRJVyn7fZYItn5MtD9lwqiykWQmfvFP+2nVCItaQAnDTzI2OZckrVTZxJ4bhcJaES4C53MvhzJqKw6bOs804eX2TxeEg6OzA1JUrAHEl4XjjYtFB3mCjOQnA8jH2lvny205wCgi2TdUpXPUtYK7HbPsv2ZUNuMRQ4pArbrUuptwWjIDmq8fHjPFWcd1LIQmTO8fjodrXHpykFuOjqIQS6hkc0PYsTRMTRJA4YZhOjeaNJK2Gfb0M+7MKFY4VchKeqiXtQL43l0gKZALghJc3uPwzo146dhsEKI3Ym2qG95fGbiiagYDVUTe/3lwZMj7MSVuYlGHzhXTHx9RcuukMK35PeY9wS/7oLboymHGGTIPY5fdFW4Gseqfz9J5p6/KLu1OJqGDOy7ckVHeWf+1P9qMi9at5gdmDb1Jarrvp6UH/qfSmwguFfd+V36QXeT/phIxj27GY7YPiK1FHpk4bQG3vkMxYDpXWc/rl9mbgU6TWYHGDXk9UEiUcXuLiNtO4rOjqzxwOfOQ==";
-
-        // Decode the Base64 data to get the Bearer token
-        const bearerToken = decodeBase64(base64Data);
-        console.log("Decoded Bearer Token: ", bearerToken);
-
-        if (bearerToken) {
-            setupPlayer(bearerToken);
-        } else {
-            console.error("Failed to decode the Base64 data.");
-        }
+    // Intercept XMLHttpRequests to add Authorization header
+    function interceptRequests(bearerToken) {
+        const originalOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function (method, url) {
+            this.addEventListener("readystatechange", function () {
+                if (this.readyState === XMLHttpRequest.OPENED && bearerToken) {
+                    this.setRequestHeader("Authorization", "Bearer " + bearerToken);
+                }
+            });
+            originalOpen.apply(this, arguments);
+        };
     }
-
-    // Call the fetchData function to initiate the request
-    fetchData();
+});
 </script>
 
 </body>
