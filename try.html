@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JW Player Setup</title>
-    <link rel="stylesheet" href="https://cdn.jwplayer.com/libraries/your-library-id.css">
+    <title>JW Player Test</title>
+    <link rel="stylesheet" href="https://cdn.jwplayer.com/libraries/YOUR_JWPLAYER_LIBRARY_ID.css">
     <style>
         /* Basic styling */
         #jwplayerDiv {
@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<script src="https://cdn.jwplayer.com/libraries/your-library-id.js"></script>
+<script src="https://cdn.jwplayer.com/libraries/YOUR_JWPLAYER_LIBRARY_ID.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -66,28 +66,21 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
     });
 
-    // Fetch MPD URL directly from Cloudflare Worker
-    fetch(`https://checkmpd.aadrapristha.workers.dev/`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error("Error fetching data:", data.error);
-                return;
-            }
-
-            const key = CryptoJS.enc.Utf8.parse("12345678901234567890123456789012"); // Example key
-            const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); // Example IV
-            const decryptedData = CryptoJS.AES.decrypt(data.data, key, { iv: iv }).toString(CryptoJS.enc.Utf8);
-            
-            try {
-                const videoData = JSON.parse(decryptedData);
-                setupPlayer(videoData.url);
-                interceptRequests(videoData.Bearer);
-            } catch (error) {
-                console.error("Error parsing decrypted data:", error);
-            }
-        })
-        .catch(error => console.error("Error fetching data:", error));
+    // Directly using the provided base64-encoded data
+    const base64Data = "gtvlRKWUCOOsTr7mPRpcmmcu5Q0aBRztMA8DSJsEyzojfM+yRD6R+z/AMhDDMfPEU2zO2hajhrG/lhiLAjpY3bWXS+O9VAyR+vC/6RAoiSrFZTSmSI+0uKUtC00diu+aJ0IXceAWBXdYsUq87AiCivJScuZ0qK/rsoxAM4DId9YoEhmQQlkjPdazq1ECtXOq+Q6gYdyvpBntO3/5M3ghN31A2kRUm4yRLvD4c3aEbPeu7OaWBI3yPco2bhUGFx9KjKtomK2sj+NwQCrxcCOdkg==";
+    
+    // Decrypt the base64-encoded data directly
+    const key = CryptoJS.enc.Utf8.parse("12345678901234567890123456789012"); // Example key
+    const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); // Example IV
+    const decryptedData = CryptoJS.AES.decrypt(base64Data, key, { iv: iv }).toString(CryptoJS.enc.Utf8);
+    
+    try {
+        const videoData = JSON.parse(decryptedData);
+        setupPlayer(videoData.url); // Ensure 'videoData.url' contains the correct MPD URL
+        interceptRequests(videoData.Bearer);
+    } catch (error) {
+        console.error("Error parsing decrypted data:", error);
+    }
 
     // Function to set up JWPlayer based on the video URL
     function setupPlayer(videoUrl) {
@@ -96,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             width: "100%",
             height: "100%",
             autostart: true,
+            type: "application/dash",
             skin: { name: 'netflix' },
             logo: { file: '#', link: "https://telegram.me/psplaylink", position: "top-left" }
         };
