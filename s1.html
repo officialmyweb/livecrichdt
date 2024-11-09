@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Telegram-Live-Cric-Hd</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/controls.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://livecrichdofficial.pages.dev/livecrichd2.css">  
+</head>
+<body>
+<div id="player-container">
+    <div data-shaka-player-container class="shaka-video-container">
+        <video autoplay data-shaka-player id="video" poster="https://i.ibb.co/wzxpfcC/IMG-20240601-170942.jpg"></video>
+    </div>
+</div>
+<script defer src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+
+<script>
+    // Redirect if embedded in an iframe or accessed from a different domain
+    const allowedDomain = "livecrichdtv.pages.dev";
+    if (window.top !== window.self || window.location.hostname !== allowedDomain) {
+        window.top.location.href = "https://telegram.me/livecrichdofficial";
+    }
+
+    // Confirmation for joining Telegram channel
+    if (confirm("Join Our Telegram Channel @livecrichdofficial")) { 
+        window.location.href = "https://telegram.me/livecrichdofficial"; 
+    }
+
+    // MPD URI setup
+    const manifestUri = "http://gcp-dash.ngslbs.com/TVD024/index.mpd";
+
+    async function initPlayer() {
+        const video = document.getElementById("video");
+        const ui = video["ui"];
+        const controls = ui.getControls();
+        const player = controls.getPlayer();
+        const config = {
+            "controlPanelElements": ["play_pause", "mute", "spacer", "time_and_duration", "quality", "fullscreen", "picture_in_picture", "overflow_menu"],
+            "overflowMenuButtons": ["captions", "cast", "quality", "language"]
+        };
+        ui.configure(config);
+
+        window.player = player;
+        window.ui = ui;
+
+        player.addEventListener("error", onPlayerErrorEvent);
+        controls.addEventListener("error", onUIErrorEvent);
+
+        try {
+            await player.load(manifestUri);
+            console.log("The video has now been loaded!");
+        } catch (error) {
+            onPlayerError(error);
+        }
+    }
+
+    function onPlayerErrorEvent(errorEvent) {
+        onPlayerError(errorEvent.detail);
+    }
+
+    function onPlayerError(error) {
+        console.error("Error code", error.code, "object", error);
+    }
+
+    function onUIErrorEvent(errorEvent) {
+        onPlayerError(errorEvent.detail);
+    }
+
+    function initFailed(errorEvent) {
+        console.error("Unable to load the UI library!");
+    }
+
+    document.addEventListener("shaka-ui-loaded", initPlayer);
+    document.addEventListener("shaka-ui-load-failed", initFailed);
+</script>
+
+<script>
+    // Logo setup
+    function addLogo() {
+        const logo = document.createElement("img");
+        logo.src = "https://i.ibb.co/7VF2dfy/1000000077-removebg-preview.png";
+        logo.alt = "Logo";
+        logo.className = "logo";
+        logo.addEventListener("click", function() {
+            window.location.href = "https://telegram.me/livecrichdofficial";
+        });
+
+        const videoContainer = document.querySelector(".shaka-video-container");
+        videoContainer.appendChild(logo);
+    }
+
+    document.addEventListener("shaka-ui-loaded", function() {
+        addLogo();
+    });
+</script>
+</body>
+</html>
