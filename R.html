@@ -29,11 +29,8 @@
         window.location.href = "https://telegram.me/livecrichdofficial"; 
     }
 
-    // MPD URI and DRM keys configuration
+    // MPD URI setup
     const manifestUri = "https://bpcdncs3.dialog.lk/bpk-token/2ab@zj24gbhur11e2mxdcntvky3ncoocx0ubocquppba/GlobalManifest.mpd";
-    const drmKeys = {
-        "2fffb62dde135028a768450907fbc9cb": "c6f9915f1444b12985ca16f56a632b85;"
-    };
 
     async function initPlayer() {
         const video = document.getElementById("video");
@@ -52,7 +49,8 @@
         player.addEventListener("error", onPlayerErrorEvent);
         controls.addEventListener("error", onUIErrorEvent);
 
-        player.configure({ drm: { clearKeys: drmKeys } });
+        // Load DRM keys from second script
+        configureDRM();
 
         try {
             await player.load(manifestUri);
@@ -83,7 +81,20 @@
 </script>
 
 <script>
-    // Logo setup with redirect to Telegram channel
+    // DRM keys and logo setup
+    const drmKeys = {
+        "2fffb62dde135028a768450907fbc9cb": "c6f9915f1444b12985ca16f56a632b85;"
+    };
+
+    function configureDRM() {
+        const player = window.player;
+        player.configure({
+            drm: {
+                clearKeys: drmKeys
+            }
+        });
+    }
+
     function configureDRMAndAddLogo() {
         const logo = document.createElement("img");
         logo.src = "https://i.ibb.co/7VF2dfy/1000000077-removebg-preview.png";
