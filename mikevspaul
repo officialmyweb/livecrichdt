@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embed Stream</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 500px; /* Adjust height as needed */
+      max-width: 800px; /* Optional: Limit maximum width */
+    }
+  </style>
+</head>
+<body>
+  <iframe src="https://mikevspaul.govag55623.workers.dev//stream" allowfullscreen></iframe>
+</body>
+</html>
