@@ -1,48 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram-Live-Cric-Hd</title>
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        .iframe-wrapper {
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Hides the top portion of the iframe */
-        }
-
-        #contentFrame {
-            width: 100%;
-            height: 97%;
-            border: none;
-            margin-top: -80px; /* Adjusts how much of the iframe to cut from the top */
-        }
-    </style>
-</head>
-
-<body>
-    <div class="iframe-wrapper">
-        <iframe id="contentFrame"
-                sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen="true"
-                scrolling="no" src="https://tmatrix.govag55623.workers.dev/">
-        </iframe>
-    </div>
+    <title>Bypass Protections</title>
     <script>
-        if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
-            window.location.href = "https://telegram.me/livecrichdofficial";
+        async function loadPage() {
+            const response = await fetch("https://s8.24cwc.com/ch2/");
+            let text = await response.text();
+
+            // Remove all scripts from the response
+            text = text.replace(/<script.*?>.*?<\/script>/gs, "");
+
+            // Load sanitized HTML into an iframe
+            const iframe = document.getElementById("content");
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(text);
+            doc.close();
         }
     </script>
+</head>
+<body onload="loadPage()">
+    <iframe id="content" width="100%" height="100%"></iframe>
 </body>
-
 </html>
