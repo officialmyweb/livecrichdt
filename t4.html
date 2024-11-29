@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Click and Disable Click</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        /* Disable clicking on the page after iframe is clicked */
+        .no-click {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="streamFrame" src="https://streamtp1.com/global1.php?stream=tnt_4_gb"></iframe>
+
+    <script>
+        const iframe = document.getElementById('streamFrame');
+
+        // Disable clicks once the iframe has loaded and clicked
+        iframe.onload = function() {
+            setTimeout(function() {
+                // Simulate a click inside the iframe
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+                // Assuming the clickable element inside the iframe has a specific selector, e.g. a button or link
+                const clickableElement = iframeDocument.querySelector('button, a');  // Modify this as needed
+
+                if (clickableElement) {
+                    clickableElement.click();  // Simulate click on the element
+                }
+
+                // Disable clicks on the entire page to prevent further interaction
+                document.body.classList.add('no-click');
+            }, 1000); // Wait a bit for iframe content to load before simulating the click
+        };
+    </script>
+</body>
+</html>
