@@ -42,15 +42,25 @@
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
-        // Check if 'id' exists, else redirect to Telegram
-        if (!id) {
-            if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
+        // Telegram popup logic
+        function showTelegramPopup() {
+            const userConfirmed = confirm("Join Our Telegram Channel @livecrichdofficial");
+            if (userConfirmed) {
+                // Redirect to Telegram channel
                 window.location.href = "https://telegram.me/livecrichdofficial";
             }
-        } else {
-            // Set the iframe src dynamically based on the 'id'
+        }
+
+        // Show the Telegram popup on page load
+        showTelegramPopup();
+
+        // Load iframe content if 'id' exists
+        if (id) {
             const iframe = document.getElementById('contentFrame');
             iframe.src = `https://matrixnbacapitan.govag55623.workers.dev/?id=${id}`;
+        } else {
+            alert("No valid ID provided. Redirecting to Telegram.");
+            window.location.href = "https://telegram.me/livecrichdofficial";
         }
     </script>
 </body>
