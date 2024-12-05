@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <title>JWPlayer with DASH</title>
+    <title>JWPlayer with DASH and Cookies</title>
     <script src="//ssl.p.jwpcdn.com/player/v/8.25.1/jwplayer.js"></script>
 </head>
 <style>
@@ -21,15 +21,21 @@
 </style>
 <body>
 
+<!-- Player container -->
 <div id="player"></div>
 
 <script>
+    // Set the cookie for the player to use (no domain specified for local or testing environment)
+    document.cookie = "__hdnea__=st=1733427353~exp=1733513753~acl=/*~hmac=ddc14d4d02e7541643d2d3c2fb74e3dde05d958117fba5ab1bac249863f693a3; path=/; secure";
+
+    // JWPlayer setup (you can replace this with NSPlayer if you're using that instead)
     jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 
     window.onload = function() {
+        // Ensure that the cookie is set before initializing the player
         var playerInstance = jwplayer("player");
 
-        // Define the DASH stream source with the correct URL and DRM configuration
+        // Define the DASH stream source with the Authorization header and DRM keys
         var source = {
             "file": "https://jiotvmblive.cdn.jio.com/bpk-tv/Ten2_HD_BTS/output/index.mpd",
             "type": "dash",
@@ -39,9 +45,6 @@
                     "keyId": "523acf1f55485476817958a62a3f2ed9",
                     "key": "52b3cea435ed25d445f9eae4883c7001"
                 }
-            },
-            "headers": {
-                "Cookie": "__hdnea__=st=1733427353~exp=1733513753~acl=/*~hmac=ddc14d4d02e7541643d2d3c2fb74e3dde05d958117fba5ab1bac249863f693a3;"
             }
         };
 
